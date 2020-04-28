@@ -17,5 +17,25 @@ module.exports = {
         .catch((err) => {
             throw(err);
         })
-    }
+    },
+    getDatabyId: (req, res) => {
+        Category.findById(req.params.categoryId)
+          .then((result) => res.json(result))
+          .catch((err) => res.json(err));
+      },
+    
+      deleteById: (req, res) => {
+        Category.findByIdAndRemove(req.params.categoryId)
+          .then((result) => res.json(result))
+          .catch((err) => res.json(err));
+      },
+      editById: (req, res) => {
+        Category.findByIdAndUpdate(req.params.categoryId, {
+            
+            name: req.body.name,
+            
+        })
+          .then((result) => res.json(result))
+          .catch((err) => res.json(err));
+      },
 }
